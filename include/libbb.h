@@ -284,9 +284,10 @@ typedef unsigned long uoff_t;
 /* Users report bionic to use 32-bit off_t even if LARGEFILE support is requested.
  * We misdetected that. Don't let it build:
  */
+/* FIXME: This test was added recently - was it always broken in Tomato/Asuswrt?
 struct BUG_off_t_size_is_misdetected {
 	char BUG_off_t_size_is_misdetected[sizeof(off_t) == sizeof(uoff_t) ? 1 : -1];
-};
+}; */
 
 /* Some useful definitions */
 #undef FALSE
@@ -1830,7 +1831,7 @@ extern const char bb_busybox_exec_path[] ALIGN1;
  * but I want to save a few bytes here */
 extern const char bb_PATH_root_path[] ALIGN1; /* "PATH=/sbin:/usr/sbin:/bin:/usr/bin" */
 #define bb_default_root_path (bb_PATH_root_path + sizeof("PATH"))
-#define bb_default_path      (bb_PATH_root_path + sizeof("PATH=/sbin:/usr/sbin"))
+#define bb_default_path      (bb_PATH_root_path + sizeof("PATH=/sbin:/usr/sbin:/opt/sbin"))
 
 extern const int const_int_0;
 //extern const int const_int_1;
